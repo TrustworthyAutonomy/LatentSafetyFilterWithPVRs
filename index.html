@@ -55,8 +55,26 @@
       overflow: auto; border: 1px solid #eee; border-radius: 8px; background: #fafafa;
       font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
     }
-    .figure-box figcaption::before {
+    .figure-box > figcaption {
+      margin-top: 10px;
+      font-size: 1.2rem;
+      color: #555;
+      font-style: italic;
+      line-height: 1.45;
+      text-align: center;
+    }
+    .figure-box > figcaption::before {
+      counter-increment: fig;
+      content: "Figure " counter(fig) ": ";
+      font-weight: 700;
+      font-style: normal;
+      color: #202124;
+    }
+    .poster-figure figcaption,
+    .poster-figure figcaption::before {
+      display: none !important;
       content: none !important;
+      counter-increment: none !important;
     }
     .link-btn {
       display: inline-flex; align-items: center; margin: 0 10px 10px;
@@ -166,7 +184,7 @@
   <div class="row top30">
     <div class="col-md-10 col-md-offset-1 text-center">
       <h2 class="section-heading" style="margin-bottom: 16px;">Poster</h2>
-      <figure class="figure-box" style="margin-top: 0;">
+      <figure class="figure-box poster-figure" style="margin-top: 0;">
         <img src="sources/poster.svg" alt="Conference poster"
              class="center-img scale-1-0"
              style="transform: none; margin-bottom: 0; width: 100%; max-width: 100%; height: auto; border: 1px solid #ddd; border-radius: 8px;">
