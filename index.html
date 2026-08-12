@@ -20,6 +20,7 @@
     .text-title { font-weight: bold; margin-top: 20px; }
     .top20 { margin-top: 20px; }
     .bottom10 { margin-bottom: 10px; }
+    .codebox-pre { background: #f8f8f8; padding: 10px; }
     a:hover { opacity: 0.85; transform: translateY(-2px); }
     .codebox { position: relative; }
     .copy-btn {
@@ -33,84 +34,11 @@
       margin: 0; padding: 14px;
       overflow: auto; border: 1px solid #eee; border-radius: 8px; background: #fafafa;
     }
-    .result-strip {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 14px;
-      margin: 28px 0 8px;
-    }
-    .result-card {
-      min-width: 180px;
-      flex: 1 1 180px;
-      max-width: 240px;
-      border: 2px solid #598be7;
-      background: #dee8fa;
-      border-radius: 10px;
-      padding: 14px 12px;
-      text-align: center;
-    }
-    .result-card .num {
-      display: block;
-      font-size: 34px;
-      font-weight: 700;
-      color: #2d57a5;
-      line-height: 1.1;
-    }
-    .result-card .label {
-      display: block;
-      margin-top: 6px;
-      font-size: 14px;
-      color: #333;
-    }
-    .pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 10px 0 0;
-    }
-    .pill {
-      display: inline-block;
-      padding: 6px 12px;
-      border-radius: 999px;
-      background: #f0f3f8;
-      border: 1px solid #d5deee;
-      font-size: 14px;
-      font-weight: 600;
-      color: #243552;
-    }
-    .env-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 12px;
-      margin-top: 12px;
-    }
-    .env-item {
-      border: 1px solid #e4e4e4;
-      border-radius: 10px;
-      padding: 14px 14px 12px;
-      background: #fafafa;
-    }
-    .env-item h3 {
-      margin: 0 0 6px;
-      font-size: 18px;
-      font-weight: 700;
-      color: #2d57a5;
-    }
-    .env-item p {
-      margin: 0;
-      font-size: 15px;
-      color: #444;
-    }
-    .findings li {
-      margin-bottom: 10px;
-    }
-    .pipeline-img {
-      width: 100%;
-      height: auto;
-      display: block;
-      margin: 0 auto;
-      transform: none !important;
+    .link-btn {
+      display: inline-flex; align-items: center; margin: 0 10px 10px;
+      padding: 10px 25px; color: white; text-decoration: none;
+      border-radius: 25px; font-size: 18px; font-weight: 500;
+      transition: all 0.2s ease;
     }
   </style>
 </head>
@@ -151,7 +79,7 @@
     </sup>
   </div>
 
-  <!-- Links -->
+  <!-- Links (X-VLA-style Paper / Code buttons) -->
   <div class="row" style="margin-top: 30px; text-align: center;">
     <div class="col-md-10 col-md-offset-1">
 
@@ -167,7 +95,7 @@
         Paper
       </a>
 
-      <a href="https://github.com/tabz23/Latent-Safety-Filters" target="_blank"
+      <a href="https://github.com/TrustworthyAutonomy" target="_blank"
          style="display: inline-flex; align-items: center; margin: 0 10px;
                 padding: 10px 25px; background-color: #24292E; color: white;
                 text-decoration: none; border-radius: 25px; font-size: 18px;
@@ -192,120 +120,67 @@
     </div>
   </div>
 
-  <!-- Key results -->
-  <div class="row">
-    <div class="col-md-10 col-md-offset-1">
-      <div class="result-strip">
-        <div class="result-card">
-          <span class="num">12.2%</span>
-          <span class="label">fewer violations with frozen PVRs vs. training from scratch</span>
-        </div>
-        <div class="result-card">
-          <span class="num">73.7%</span>
-          <span class="label">fewer violations after fine-tuning PVRs for the safety task</span>
-        </div>
-        <div class="result-card">
-          <span class="num">&le;19.3&nbsp;ms</span>
-          <span class="label">inference &mdash; real-time capable at 50&nbsp;Hz on edge devices</span>
-        </div>
-      </div>
+  <br>
+
+  <!-- Optional teaser video / figure: place files under sources/ then uncomment
+  <div class="row top30">
+    <div class="col-md-8 col-md-offset-2">
+      <video id="mainVideo" autoplay loop muted playsinline style="border-radius: 12px; width:100%;">
+        <source src="sources/demo.mp4" type="video/mp4">
+      </video>
     </div>
   </div>
+  -->
 
   <div id="pageTitle"></div>
 
   <!-- Overview -->
   <div class="row top20 text-body">
     <h1>Overview</h1>
-    Ensuring safety of vision-based control systems remains a major challenge for deployment in critical settings.
-    Classical safety filters (e.g., CBFs and HJ reachability) do not scale well when the agent only observes high-dimensional images.
-    This paper studies whether <span class="text-blue-bold">pre-trained vision representations (PVRs)</span> can serve as effective perception backbones for
+    Ensuring safety of vision-based control systems remains a major challenge hindering their deployment in critical settings.
+    Safety filters have gained increased interest as effective tools for ensuring the safety of classical control systems,
+    but their applications in vision-based control settings have so far been limited.
+    <span class="text-blue-bold">Pre-trained vision models (PVRs)</span> have been shown to be effective perception backbones for control in various robotics domains.
+    In this paper, we examine their effectiveness when used for designing
     <span class="text-blue-bold">vision-based safety filters</span>.
-    We use PVRs for latent failure classifiers, Hamilton&ndash;Jacobi (HJ) reachability-based value functions, and latent world models,
-    and compare <span class="text-blue-bold">frozen</span>, <span class="text-blue-bold">fine-tuned</span>, and <span class="text-blue-bold">trained-from-scratch</span> variants across multiple robotics environments.
+    We use them as backbones for classifiers defining failure sets, for
+    <span class="text-blue-bold">Hamilton-Jacobi (HJ) reachability</span>-based safety filters, and for latent world models.
+    We discuss the trade-offs between training from scratch, fine-tuning, and freezing the PVRs when training the models they are backbones for.
+    We also evaluate whether one of the PVRs is superior across all tasks, whether learned world models or Q-functions are better for switching decisions to safe policies,
+    and practical considerations for deploying these PVRs on resource-constrained devices.
   </div>
 
-  <!-- Pipeline -->
+  <!-- Optional figure
   <div class="row top50 text-center">
-    <div class="col-md-10 col-md-offset-1">
+    <div class="col-md-8 col-md-offset-2">
       <figure class="figure-box">
-        <img src="sources/pipeline.svg" alt="Pipeline from image to safe control" class="pipeline-img">
-        <figcaption>
-          From RGB observations to safe control: a PVR encodes the image; latent failure classifiers and HJ safety filters
-          (optionally with a world model) decide when to switch from the nominal policy to a safe policy.
-        </figcaption>
+        <img src="sources/teaser.png" alt="Method overview" class="center-img scale-1-0">
+        <figcaption>Overview of latent safety filters with pre-trained vision models.</figcaption>
       </figure>
     </div>
   </div>
+  -->
 
-  <!-- Takeaways -->
+  <!-- Approach -->
   <div class="row top20 text-body">
-    <h1>Key takeaways</h1>
-    <ol class="findings">
-      <li>A task-specific representation can match or surpass <b>frozen</b> PVRs on safety-control tasks.</li>
-      <li><b>Fine-tuning</b> PVRs during safety-filter training substantially improves collision avoidance.</li>
-      <li>Safety filters with <span class="text-blue-bold">DINOv2</span> consistently perform well across tasks.</li>
-      <li>If a PVR is well suited for world-model learning, <b>dynamics lookahead</b> can beat critic-only switching; otherwise a Q-function is preferable.</li>
-      <li>PVR-based safety filters are light enough for real-world / edge deployment (&le;19.3&nbsp;ms, &le;611&nbsp;MB).</li>
-    </ol>
-  </div>
-
-  <!-- What we evaluate -->
-  <div class="row top20 text-body">
-    <h1>What we evaluate</h1>
-    <p>
-      Five popular PVRs as perception backbones for safety-critical components:
-    </p>
-    <div class="pill-row">
-      <span class="pill">DINOv2 (patch)</span>
-      <span class="pill">DINOv2-CLS</span>
-      <span class="pill">VC-1</span>
-      <span class="pill">R3M</span>
-      <span class="pill">ResNet-50</span>
-      <span class="pill">Scratch / WM-R baselines</span>
-    </div>
-    <p style="margin-top:16px;">
-      For each backbone we study three uses in latent space:
-    </p>
+    <h1>Approach</h1>
+    We study PVRs as shared perception backbones across three safety-related components:
     <ol>
-      <li><b>Failure-set classifiers</b> that separate safe vs. unsafe visual observations.</li>
-      <li><b>HJ reachability safety filters</b> trained with DDPG / DDQN in the latent representation.</li>
-      <li><b>Latent world models</b> (DINO-WM-style) used for dynamics-lookahead switching decisions.</li>
+      <li><b>Failure-set classifiers</b> that recognize unsafe visual states.</li>
+      <li><b>HJ reachability-based safety filters</b> operating in latent representations.</li>
+      <li><b>Latent world models</b> used for safety-aware switching decisions.</li>
     </ol>
+    Across these settings we compare training from scratch, fine-tuning, and freezing the PVR backbone,
+    and analyze which design choices transfer best across tasks and hardware constraints.
   </div>
 
-  <!-- Environments -->
+  <!-- Findings -->
   <div class="row top20 text-body">
-    <h1>Environments</h1>
-    <div class="env-grid">
-      <div class="env-item">
-        <h3>ManiSkill</h3>
-        <p>Unitree G1 places an apple in a bowl. Failure: hand contacts the bowl.</p>
-      </div>
-      <div class="env-item">
-        <h3>Dubins Car</h3>
-        <p>2D navigation with obstacles under overhead RGB. Failure: collision.</p>
-      </div>
-      <div class="env-item">
-        <h3>CarGoal</h3>
-        <p>Safety Gymnasium goal reaching with hazards under egocentric vision.</p>
-      </div>
-      <div class="env-item">
-        <h3>CARLA</h3>
-        <p>Ego vehicle follows a lead car. Failure: vehicle&ndash;vehicle collision.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Switching -->
-  <div class="row top20 text-body">
-    <h1>Closed-loop switching</h1>
-    At runtime the filter chooses between the nominal policy \(\pi_{\mathrm{nom}}\) and the safe policy \(\pi_{\mathrm{safe}}\):
-    <ul>
-      <li><span class="text-blue-bold">Critic-only</span>: evaluate \(Q(z_t, a_{\mathrm{nom}})\) and intervene if the margin falls below \(\tau\).</li>
-      <li><span class="text-blue-bold">Dynamics lookahead</span>: predict \(\hat{z}_{t+1}\) with the world model, then evaluate safety of the predicted next latent state.</li>
-    </ul>
-    Across tasks, fine-tuned PVR filters generally reduce violations more than Scratch / WM-R baselines while preserving task success.
+    <h1>Findings</h1>
+    The paper evaluates whether a single PVR backbone dominates across safety tasks, compares
+    latent world models versus Q-functions for deciding when to switch to a safe policy,
+    and discusses practical deployment on resource-constrained platforms.
+    See the paper for full experimental details and ablations.
   </div>
 
   <!-- Citation -->
