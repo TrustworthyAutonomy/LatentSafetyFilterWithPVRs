@@ -150,53 +150,20 @@
 
   <div id="pageTitle"></div>
 
-  <!-- Overview -->
+  <!-- Abstract -->
   <div class="row top20 text-body">
-    <h1>Overview</h1>
+    <h1>Abstract</h1>
     Ensuring safety of vision-based control systems remains a major challenge hindering their deployment in critical settings.
     Safety filters have gained increased interest as effective tools for ensuring the safety of classical control systems,
     but their applications in vision-based control settings have so far been limited.
-    <span class="text-blue-bold">Pre-trained vision models (PVRs)</span> have been shown to be effective perception backbones for control in various robotics domains.
-    In this paper, we examine their effectiveness when used for designing
-    <span class="text-blue-bold">vision-based safety filters</span>.
-    We use them as backbones for classifiers defining failure sets, for
-    <span class="text-blue-bold">Hamilton-Jacobi (HJ) reachability</span>-based safety filters, and for latent world models.
-    We discuss the trade-offs between training from scratch, fine-tuning, and freezing the PVRs when training the models they are backbones for.
-    We also evaluate whether one of the PVRs is superior across all tasks, whether learned world models or Q-functions are better for switching decisions to safe policies,
-    and practical considerations for deploying these PVRs on resource-constrained devices.
-  </div>
-
-  <!-- Optional figure
-  <div class="row top50 text-center">
-    <div class="col-md-8 col-md-offset-2">
-      <figure class="figure-box">
-        <img src="sources/teaser.png" alt="Method overview" class="center-img scale-1-0">
-        <figcaption>Overview of latent safety filters with pre-trained vision models.</figcaption>
-      </figure>
-    </div>
-  </div>
-  -->
-
-  <!-- Approach -->
-  <div class="row top20 text-body">
-    <h1>Approach</h1>
-    We study PVRs as shared perception backbones across three safety-related components:
-    <ol>
-      <li><b>Failure-set classifiers</b> that recognize unsafe visual states.</li>
-      <li><b>HJ reachability-based safety filters</b> operating in latent representations.</li>
-      <li><b>Latent world models</b> used for safety-aware switching decisions.</li>
-    </ol>
-    Across these settings we compare training from scratch, fine-tuning, and freezing the PVR backbone,
-    and analyze which design choices transfer best across tasks and hardware constraints.
-  </div>
-
-  <!-- Findings -->
-  <div class="row top20 text-body">
-    <h1>Findings</h1>
-    The paper evaluates whether a single PVR backbone dominates across safety tasks, compares
-    latent world models versus Q-functions for deciding when to switch to a safe policy,
-    and discusses practical deployment on resource-constrained platforms.
-    See the paper for full experimental details and ablations.
+    Pre-trained vision models (PVRs) have been shown to be effective perception backbones for control in various robotics domains.
+    In this paper, we are interested in examining their effectiveness when used for designing vision-based safety filters.
+    We use them as backbones for classifiers defining failure sets, for Hamilton&ndash;Jacobi (HJ) reachability-based value functions, and for latent world models.
+    We discuss the trade-offs between training from scratch, fine-tuning the PVRs, and freezing the PVRs when training the models they are backbones for.
+    We also evaluate whether one of the PVRs is superior across all tasks, evaluate whether learned world models or Q-functions are better for switching decisions to safe policies,
+    and discuss practical considerations for deploying these PVRs on resource-constrained devices.
+    Our experiments show that compared to training representations from scratch, using PVRs as perception backbones for vision-based safety filters can reduce violation rates by 12.2%,
+    and fine-tuning PVRs to the task can reduce them by 73.7%, while maintaining or improving task performance.
   </div>
 
   <!-- Citation -->
