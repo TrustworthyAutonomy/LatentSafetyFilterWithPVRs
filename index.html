@@ -18,18 +18,25 @@
   <style>
     body {
       padding-top: 30px;
-      font-family: Palatino, "Palatino Linotype", "Book Antiqua", Georgia, serif;
+      font-family: Palatino, "Palatino Linotype", "Book Antiqua", Georgia, serif !important;
       line-height: 1.58;
       color: #202124;
     }
-    h1, h2, h3, p, li, td, th, .ins_text, .authors {
-      font-family: Palatino, "Palatino Linotype", "Book Antiqua", Georgia, serif;
+    h1, h2, h3, p, li, td, th, .ins_text, .authors, .section-heading, .text-body {
+      font-family: Palatino, "Palatino Linotype", "Book Antiqua", Georgia, serif !important;
+    }
+    .section-heading {
+      font-weight: 500 !important;
+      font-size: clamp(2.4rem, 4vw, 3.2rem) !important;
+      line-height: 1.2;
+      color: #202124;
     }
     .text-title {
       font-weight: 500;
       margin-top: 20px;
       font-size: clamp(2.2rem, 4.5vw, 3.4rem);
       line-height: 1.22;
+      font-family: Palatino, "Palatino Linotype", "Book Antiqua", Georgia, serif !important;
     }
     .top20 { margin-top: 20px; }
     .bottom10 { margin-bottom: 10px; }
@@ -47,6 +54,9 @@
       margin: 0; padding: 14px;
       overflow: auto; border: 1px solid #eee; border-radius: 8px; background: #fafafa;
       font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+    }
+    .figure-box figcaption::before {
+      content: none !important;
     }
     .link-btn {
       display: inline-flex; align-items: center; margin: 0 10px 10px;
@@ -134,39 +144,11 @@
     </div>
   </div>
 
-  <!-- Poster -->
-  <div class="row top30">
-    <div class="col-md-10 col-md-offset-1 text-center">
-      <h2 style="margin-bottom: 16px;">Poster</h2>
-      <figure class="figure-box" style="margin-top: 0;">
-        <img src="sources/poster.svg" alt="Conference poster for Designing Latent Safety Filters using Pre-Trained Vision Models"
-             class="center-img scale-1-0"
-             style="transform: none; margin-bottom: 12px; width: 100%; max-width: 100%; height: auto; border: 1px solid #ddd; border-radius: 8px;">
-        <figcaption>
-          Project poster.
-          <a href="poster.pdf" target="_blank">Download PDF</a>
-        </figcaption>
-      </figure>
-    </div>
-  </div>
-
-  <br>
-
-  <!-- Optional teaser video / figure: place files under sources/ then uncomment
-  <div class="row top30">
-    <div class="col-md-8 col-md-offset-2">
-      <video id="mainVideo" autoplay loop muted playsinline style="border-radius: 12px; width:100%;">
-        <source src="sources/demo.mp4" type="video/mp4">
-      </video>
-    </div>
-  </div>
-  -->
-
   <div id="pageTitle"></div>
 
   <!-- Abstract -->
   <div class="row top20 text-body">
-    <h1>Abstract</h1>
+    <h1 class="section-heading">Abstract</h1>
     Ensuring safety of vision-based control systems remains a major challenge hindering their deployment in critical settings.
     Safety filters have gained increased interest as effective tools for ensuring the safety of classical control systems,
     but their applications in vision-based control settings have so far been limited.
@@ -180,9 +162,21 @@
     and fine-tuning PVRs to the task can reduce them by 73.7%, while maintaining or improving task performance.
   </div>
 
+  <!-- Poster -->
+  <div class="row top30">
+    <div class="col-md-10 col-md-offset-1 text-center">
+      <h2 class="section-heading" style="margin-bottom: 16px;">Poster</h2>
+      <figure class="figure-box" style="margin-top: 0;">
+        <img src="sources/poster.svg" alt="Conference poster"
+             class="center-img scale-1-0"
+             style="transform: none; margin-bottom: 0; width: 100%; max-width: 100%; height: auto; border: 1px solid #ddd; border-radius: 8px;">
+      </figure>
+    </div>
+  </div>
+
   <!-- Citation -->
   <div class="row top20">
-    <h1>Citation</h1>
+    <h1 class="section-heading">Citation</h1>
     <div class="codebox">
       <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
       <pre class="codebox-pre"><code class="nohighlight">@misc{tabbara2025designinglatentsafetyfilters,
