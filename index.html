@@ -1,50 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Paper</title>
-    <meta name="description" content="Project page for a research paper" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&family=IBM+Plex+Mono:wght@400&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="css/styles.css" />
-  </head>
-  <body>
-    <main class="page">
-      <header class="header">
-        <h1 id="paper-title">Paper title</h1>
-        <p class="authors" id="authors"></p>
-        <p class="affiliations" id="affiliations"></p>
-        <p class="venue" id="venue"></p>
-        <div class="links" id="links"></div>
-      </header>
+<head>
+  <meta charset="UTF-8">
+  <title>Latent Safety Filters with PVRs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Designing Latent Safety Filters using Pre-Trained Vision Models">
 
-      <figure class="teaser" id="teaser" hidden>
-        <img id="teaser-image" src="" alt="" />
-        <figcaption id="teaser-caption"></figcaption>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="bootstrap.min.css">
+  <link rel="stylesheet" href="stylesheet.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    body { padding-top: 30px; }
+    .text-title { font-weight: bold; margin-top: 20px; }
+    .top20 { margin-top: 20px; }
+    .bottom10 { margin-bottom: 10px; }
+    .codebox-pre { background: #f8f8f8; padding: 10px; }
+    a:hover { opacity: 0.85; transform: translateY(-2px); }
+    .codebox { position: relative; }
+    .copy-btn {
+      position: absolute; top: 8px; right: 8px;
+      padding: 4px 10px; font-size: 12px; line-height: 1;
+      border: 1px solid #ddd; border-radius: 6px; background: #f7f7f7;
+      cursor: pointer;
+    }
+    .copy-btn:active { transform: translateY(1px); }
+    .codebox-pre {
+      margin: 0; padding: 14px;
+      overflow: auto; border: 1px solid #eee; border-radius: 8px; background: #fafafa;
+    }
+    .link-btn {
+      display: inline-flex; align-items: center; margin: 0 10px 10px;
+      padding: 10px 25px; color: white; text-decoration: none;
+      border-radius: 25px; font-size: 18px; font-weight: 500;
+      transition: all 0.2s ease;
+    }
+  </style>
+</head>
+
+<body>
+<div class="container">
+
+  <!-- Title -->
+  <div class="row text-center">
+    <h1 class="text-title">
+      Designing <span class="text-highlight" style="font-size: inherit;">Latent Safety Filters</span>
+      using Pre-Trained Vision Models
+    </h1>
+  </div>
+
+  <!-- Authors -->
+  <div class="row publication-authors text-center ins_text col-md-8 col-md-offset-2">
+    <ul class="list-inline authors">
+      <li>Ihab Tabbara</li>
+      <li>Yuxuan Yang</li>
+      <li>Ahmad Hamzeh</li>
+      <li>Maxwell Astafyev</li>
+      <li>Hussein Sibai</li>
+    </ul>
+  </div>
+
+  <div class="row publication-authors text-center ins_text col-md-8 col-md-offset-2">
+    <span class="author-block"><sup></sup>Trustworthy Autonomy</span>
+  </div>
+
+  <!-- Links -->
+  <div class="row" style="margin-top: 30px; text-align: center;">
+    <div class="col-md-10 col-md-offset-1">
+      <a class="link-btn" href="https://arxiv.org/pdf/2509.14758" target="_blank"
+         style="background-color: #B31B1B;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="22" height="22" style="margin-right:10px;">
+          <path fill="currentColor" d="M181.9 256.1c-5-16-4.9-46.9-2-46.9 8.4 0 7.6 36.9 2 46.9zm-1.7 47.2c-7.7 20.2-17.3 43.3-28.4 62.7 18.3-7 39-17.2 62.9-21.9-12.7-9.6-24.9-23.4-34.5-40.8zM86.1 428.1c0 .8 13.2-5.4 34.9-40.2-6.7 6.3-29.1 24.5-34.9 40.2zM248 160h136v328c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V24C0 10.7 10.7 0 24 0h200v136c0 13.2 10.8 24 24 24zm-8 171.8c-20-12.2-33.3-29-42.7-53.8 4.5-18.5 11.6-46.6 6.2-64.2-4.7-29.4-42.4-26.5-47.8-6.8-5 18.3-.4 44.1 8.1 77-11.6 27.6-28.7 64.6-40.8 85.8-.1 0-.1.1-.2.1-27.1 13.9-73.6 44.5-54.5 68 5.6 6.9 16 10 21.5 10 17.9 0 35.7-18 61.1-61.8 25.8-8.5 54.1-19.1 79-23.2 21.7 11.8 47.1 19.5 64 19.5 29.2 0 31.2-32 19.7-43.4-13.9-13.6-54.3-9.7-73.6-7.2zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-74.1 255.3c4.1-2.7-2.5-11.9-42.8-9 37.1 15.8 42.8 9 42.8 9z"/>
+        </svg>
+        Paper
+      </a>
+
+      <a class="link-btn" href="https://arxiv.org/abs/2509.14758" target="_blank"
+         style="background-color: #B31B1B;">
+        arXiv
+      </a>
+
+      <!-- Add code URL when ready
+      <a class="link-btn" href="https://github.com/TrustworthyAutonomy/..." target="_blank"
+         style="background-color: #24292E;">Code</a>
+      -->
+    </div>
+  </div>
+
+  <br>
+
+  <!-- Optional teaser video / figure: place files under sources/ then uncomment
+  <div class="row top30">
+    <div class="col-md-8 col-md-offset-2">
+      <video id="mainVideo" autoplay loop muted playsinline style="border-radius: 12px; width:100%;">
+        <source src="sources/demo.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+  -->
+
+  <div id="pageTitle"></div>
+
+  <!-- Overview -->
+  <div class="row top20 text-body">
+    <h1>Overview</h1>
+    Ensuring safety of vision-based control systems remains a major challenge hindering their deployment in critical settings.
+    Safety filters have gained increased interest as effective tools for ensuring the safety of classical control systems,
+    but their applications in vision-based control settings have so far been limited.
+    <span class="text-blue-bold">Pre-trained vision models (PVRs)</span> have been shown to be effective perception backbones for control in various robotics domains.
+    In this paper, we examine their effectiveness when used for designing
+    <span class="text-blue-bold">vision-based safety filters</span>.
+    We use them as backbones for classifiers defining failure sets, for
+    <span class="text-blue-bold">Hamilton-Jacobi (HJ) reachability</span>-based safety filters, and for latent world models.
+    We discuss the trade-offs between training from scratch, fine-tuning, and freezing the PVRs when training the models they are backbones for.
+    We also evaluate whether one of the PVRs is superior across all tasks, whether learned world models or Q-functions are better for switching decisions to safe policies,
+    and practical considerations for deploying these PVRs on resource-constrained devices.
+  </div>
+
+  <!-- Optional figure
+  <div class="row top50 text-center">
+    <div class="col-md-8 col-md-offset-2">
+      <figure class="figure-box">
+        <img src="sources/teaser.png" alt="Method overview" class="center-img scale-1-0">
+        <figcaption>Overview of latent safety filters with pre-trained vision models.</figcaption>
       </figure>
+    </div>
+  </div>
+  -->
 
-      <section id="overview">
-        <h2>Overview</h2>
-        <p id="abstract"></p>
-      </section>
+  <!-- Approach -->
+  <div class="row top20 text-body">
+    <h1>Approach</h1>
+    We study PVRs as shared perception backbones across three safety-related components:
+    <ol>
+      <li><b>Failure-set classifiers</b> that recognize unsafe visual states.</li>
+      <li><b>HJ reachability-based safety filters</b> operating in latent representations.</li>
+      <li><b>Latent world models</b> used for safety-aware switching decisions.</li>
+    </ol>
+    Across these settings we compare training from scratch, fine-tuning, and freezing the PVR backbone,
+    and analyze which design choices transfer best across tasks and hardware constraints.
+  </div>
 
-      <div id="sections"></div>
+  <!-- Findings -->
+  <div class="row top20 text-body">
+    <h1>Findings</h1>
+    The paper evaluates whether a single PVR backbone dominates across safety tasks, compares
+    latent world models versus Q-functions for deciding when to switch to a safe policy,
+    and discusses practical deployment on resource-constrained platforms.
+    See the paper for full experimental details and ablations.
+  </div>
 
-      <section id="citation">
-        <h2>Citation</h2>
-        <div class="bib-wrap">
-          <button type="button" class="copy-btn" id="copy-bibtex">Copy</button>
-          <pre><code id="bibtex"></code></pre>
-        </div>
-      </section>
-    </main>
+  <!-- Citation -->
+  <div class="row top20">
+    <h1>Citation</h1>
+    <div class="codebox">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre class="codebox-pre"><code class="nohighlight">@misc{tabbara2025designinglatentsafetyfilters,
+  title={Designing Latent Safety Filters using Pre-Trained Vision Models},
+  author={Ihab Tabbara and Yuxuan Yang and Ahmad Hamzeh and Maxwell Astafyev and Hussein Sibai},
+  year={2025},
+  eprint={2509.14758},
+  archivePrefix={arXiv},
+  primaryClass={cs.RO},
+  url={https://arxiv.org/abs/2509.14758},
+}</code></pre>
+    </div>
+  </div>
 
-    <script src="js/config.js"></script>
-    <script src="js/main.js"></script>
-  </body>
+  <!-- Acknowledgements -->
+  <div class="row top20">
+    <h1>Acknowledgements</h1>
+    Project page for
+    <a href="https://arxiv.org/abs/2509.14758" target="_blank">arXiv:2509.14758</a>.
+    Layout adapted from common academic project-page styles
+    (e.g. <a href="https://thu-air-dream.github.io/X-VLA/" target="_blank">X-VLA</a>).
+  </div>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script>
+  (function () {
+    document.querySelectorAll('.codebox').forEach(function (box) {
+      const btn = box.querySelector('.copy-btn');
+      const codeEl = box.querySelector('pre code');
+      btn.addEventListener('click', async function () {
+        const text = (codeEl.innerText || codeEl.textContent || '').replace(/^\n+|\n+$/g, '');
+        try {
+          await navigator.clipboard.writeText(text);
+          btn.textContent = 'Copied!';
+        } catch (err) {
+          const ta = document.createElement('textarea');
+          ta.value = text; document.body.appendChild(ta);
+          ta.select(); document.execCommand('copy');
+          document.body.removeChild(ta);
+          btn.textContent = 'Copied!';
+        }
+        setTimeout(() => (btn.textContent = 'Copy'), 1500);
+      });
+    });
+  })();
+</script>
+</body>
 </html>
