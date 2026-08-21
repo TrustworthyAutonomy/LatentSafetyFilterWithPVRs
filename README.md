@@ -1,47 +1,20 @@
-# Paper Website Template
+# Designing Latent Safety Filters using Pre-Trained Vision Models
 
-Project page template for a published paper (GitHub Pages).
+Project page for [arXiv:2509.14758](https://arxiv.org/abs/2509.14758).
 
-## 1. Push this template to the org (once)
+Live site: https://trustworthyautonomy.github.io/LatentSafetyFilterWithPVRs/
+
+## Push to the org
 
 ```powershell
-cd F:\websites\paper-website-template
-
+cd F:\websites\DesignLatentSafetyFilter
 git init
 git add .
-git commit -m "Initial paper website template"
+git commit -m "Initial project page for arXiv 2509.14758"
 git branch -M main
-
-gh repo create TrustworthyAutonomy/paper-website-template --public --source=. --remote=origin --push
+gh repo create TrustworthyAutonomy/LatentSafetyFilterWithPVRs --public --source=. --remote=origin --push
 ```
 
-Then on GitHub: repo **Settings** → check **Template repository**.
+Then enable **Settings → Pages → Source: GitHub Actions**.
 
-Also: **Settings → Pages → Source: GitHub Actions**.
-
-## 2. Create a repo for each paper
-
-```powershell
-gh repo create TrustworthyAutonomy/DesignLatentSafetyFilter --public --template TrustworthyAutonomy/paper-website-template
-```
-
-Clone and edit:
-
-```powershell
-gh repo clone TrustworthyAutonomy/DesignLatentSafetyFilter
-cd DesignLatentSafetyFilter
-# edit js/config.js
-git add .
-git commit -m "Fill in paper details"
-git push
-```
-
-Enable Pages on that paper repo too (**Settings → Pages → GitHub Actions**).
-
-Site URL:
-
-`https://trustworthyautonomy.github.io/DesignLatentSafetyFilter/`
-
-## Customize
-
-Edit only `js/config.js`: title, authors, venue, abstract, links, bibtex, hero image.
+Site URL: https://trustworthyautonomy.github.io/LatentSafetyFilterWithPVRs/
