@@ -5,16 +5,22 @@
   <title>Designing Latent Safety Filters using Pre-Trained Vision Models</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Designing Latent Safety Filters using Pre-Trained Vision Models — Ihab Tabbara, Yuxuan Yang, Ahmad Hamzeh, Maxwell Astafyev, and Hussein Sibai">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="keywords" content="latent safety filters, pre-trained vision models, robot safety, Hamilton-Jacobi reachability, vision-based control, trustworthy autonomy">
   <meta property="og:title" content="Designing Latent Safety Filters using Pre-Trained Vision Models">
   <meta property="og:description" content="Project page for the paper Designing Latent Safety Filters using Pre-Trained Vision Models by Ihab Tabbara, Yuxuan Yang, Ahmad Hamzeh, Maxwell Astafyev, and Hussein Sibai.">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Designing Latent Safety Filters using Pre-Trained Vision Models">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Trustworthy Autonomy Lab">
   <meta property="og:url" content="https://trustworthyautonomy.github.io/LatentSafetyFilterWithPVRs/">
-  <meta property="og:image" content="https://trustworthyautonomy.github.io/LatentSafetyFilterWithPVRs/sources/poster.svg">
+  <meta property="og:image" content="https://trustworthyautonomy.github.io/LatentSafetyFilterWithPVRs/sources/social-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Title and authors of Designing Latent Safety Filters using Pre-Trained Vision Models">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Designing Latent Safety Filters using Pre-Trained Vision Models">
   <meta name="twitter:description" content="Project page for the paper Designing Latent Safety Filters using Pre-Trained Vision Models by Ihab Tabbara, Yuxuan Yang, Ahmad Hamzeh, Maxwell Astafyev, and Hussein Sibai.">
-  <meta name="twitter:image" content="https://trustworthyautonomy.github.io/LatentSafetyFilterWithPVRs/sources/poster.svg">
+  <meta name="twitter:image" content="https://trustworthyautonomy.github.io/LatentSafetyFilterWithPVRs/sources/social-card.png">
+  <meta property="article:published_time" content="2025-09-18">
   <link rel="canonical" href="https://trustworthyautonomy.github.io/LatentSafetyFilterWithPVRs/">
   <meta name="citation_title" content="Designing Latent Safety Filters using Pre-Trained Vision Models">
   <meta name="citation_author" content="Ihab Tabbara">
@@ -22,16 +28,20 @@
   <meta name="citation_author" content="Ahmad Hamzeh">
   <meta name="citation_author" content="Maxwell Astafyev">
   <meta name="citation_author" content="Hussein Sibai">
-  <meta name="citation_publication_date" content="2025/09/01">
-  <meta name="citation_online_date" content="2025/09/01">
+  <meta name="citation_publication_date" content="2025/09/18">
+  <meta name="citation_online_date" content="2025/09/18">
   <meta name="citation_pdf_url" content="https://arxiv.org/pdf/2509.14758">
   <meta name="citation_arxiv_id" content="2509.14758">
+  <meta name="citation_technical_report_institution" content="arXiv">
+  <meta name="citation_technical_report_number" content="arXiv:2509.14758">
+  <meta name="citation_fulltext_html_url" content="https://trustworthyautonomy.github.io/LatentSafetyFilterWithPVRs/">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "ScholarlyArticle",
     "headline": "Designing Latent Safety Filters using Pre-Trained Vision Models",
     "name": "Designing Latent Safety Filters using Pre-Trained Vision Models",
+    "description": "An evaluation of pre-trained vision models as perception backbones for vision-based safety filters.",
     "author": [
       {"@type": "Person", "name": "Ihab Tabbara"},
       {"@type": "Person", "name": "Yuxuan Yang"},
@@ -39,12 +49,15 @@
       {"@type": "Person", "name": "Maxwell Astafyev"},
       {"@type": "Person", "name": "Hussein Sibai"}
     ],
-    "datePublished": "2025-09-01",
+    "datePublished": "2025-09-18",
     "url": "https://trustworthyautonomy.github.io/LatentSafetyFilterWithPVRs/",
+    "mainEntityOfPage": "https://trustworthyautonomy.github.io/LatentSafetyFilterWithPVRs/",
     "sameAs": "https://arxiv.org/abs/2509.14758",
-    "image": "https://trustworthyautonomy.github.io/LatentSafetyFilterWithPVRs/sources/poster.svg",
-    "publisher": {"@type": "Organization", "name": "arXiv"},
-    "identifier": "https://arxiv.org/abs/2509.14758"
+    "codeRepository": "https://github.com/tabz23/Latent-Safety-Filters",
+    "image": "https://trustworthyautonomy.github.io/LatentSafetyFilterWithPVRs/sources/social-card.png",
+    "isPartOf": {"@type": "Periodical", "name": "arXiv"},
+    "identifier": "arXiv:2509.14758",
+    "keywords": ["latent safety filters", "pre-trained vision models", "Hamilton-Jacobi reachability", "robot safety"]
   }
   </script>
 
@@ -60,6 +73,7 @@
   <style>
     body {
       padding-top: 30px;
+      counter-reset: fig tab;
       font-family: Palatino, "Palatino Linotype", "Book Antiqua", Georgia, serif !important;
       line-height: 1.58;
       color: #202124;
@@ -92,6 +106,24 @@
       font-family: Palatino, "Palatino Linotype", "Book Antiqua", Georgia, serif;
     }
     .copy-btn:active { transform: translateY(1px); }
+    .lab-nav {
+      margin-bottom: 18px;
+      font-size: 1.15rem;
+    }
+    .lab-nav a, .site-footer a { color: #315f8c; }
+    .site-footer {
+      margin: 44px 0 24px;
+      padding-top: 18px;
+      border-top: 1px solid #e5e7eb;
+      color: #5f6368;
+      text-align: center;
+      font-size: 1.1rem;
+    }
+    .key-findings {
+      padding-left: 1.25rem;
+      font-size: 1.2rem;
+    }
+    .key-findings li { margin-bottom: 0.65rem; }
     .codebox-pre {
       margin: 0; padding: 14px;
       overflow: auto; border: 1px solid #eee; border-radius: 8px; background: #fafafa;
@@ -128,7 +160,12 @@
 </head>
 
 <body>
-<div class="container">
+<main class="container">
+  <nav class="lab-nav" aria-label="Lab navigation">
+    <a href="https://trustworthyautonomy.github.io/">Trustworthy Autonomy Lab</a>
+    <span aria-hidden="true"> / </span>
+    <span>Research</span>
+  </nav>
 
   <!-- Title -->
   <div class="row text-center">
@@ -167,7 +204,7 @@
   <div class="row" style="margin-top: 30px; text-align: center;">
     <div class="col-md-10 col-md-offset-1">
 
-      <a href="https://arxiv.org/pdf/2509.14758" target="_blank"
+      <a href="https://arxiv.org/pdf/2509.14758" target="_blank" rel="noopener noreferrer"
          style="display: inline-flex; align-items: center; margin: 0 10px;
                 padding: 10px 25px; background-color: #B31B1B; color: white;
                 text-decoration: none; border-radius: 25px; font-size: 18px;
@@ -179,7 +216,7 @@
         Paper
       </a>
 
-      <a href="https://github.com/tabz23/Latent-Safety-Filters" target="_blank"
+      <a href="https://github.com/tabz23/Latent-Safety-Filters" target="_blank" rel="noopener noreferrer"
          style="display: inline-flex; align-items: center; margin: 0 10px;
                 padding: 10px 25px; background-color: #24292E; color: white;
                 text-decoration: none; border-radius: 25px; font-size: 18px;
@@ -208,7 +245,7 @@
 
   <!-- Abstract -->
   <div class="row top20 text-body">
-    <h1 class="section-heading">Abstract</h1>
+    <h2 class="section-heading">Abstract</h2>
     Ensuring safety of vision-based control systems remains a major challenge hindering their deployment in critical settings.
     Safety filters have gained increased interest as effective tools for ensuring the safety of classical control systems,
     but their applications in vision-based control settings have so far been limited.
@@ -221,6 +258,15 @@
     Our experiments show that compared to training representations from scratch, using PVRs as perception backbones for vision-based safety filters can reduce violation rates by 12.2%,
     and fine-tuning PVRs to the task can reduce them by 73.7%, while maintaining or improving task performance.
   </div>
+
+  <section class="row top20 text-body" aria-labelledby="findings-title">
+    <h2 class="section-heading" id="findings-title">Key findings</h2>
+    <ul class="key-findings">
+      <li>Pre-trained vision representations reduce safety violations by 12.2% compared with learning visual representations from scratch.</li>
+      <li>Task-specific fine-tuning reduces violations by 73.7% while maintaining or improving task performance.</li>
+      <li>The study compares PVRs across failure-set classifiers, Hamilton&ndash;Jacobi value functions, latent world models, and deployment on resource-constrained devices.</li>
+    </ul>
+  </section>
 
   <!-- Poster -->
   <div class="row top30">
@@ -236,7 +282,7 @@
 
   <!-- Citation -->
   <div class="row top20">
-    <h1 class="section-heading">Citation</h1>
+    <h2 class="section-heading">Citation</h2>
     <div class="codebox">
       <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
       <pre class="codebox-pre"><code class="nohighlight">@misc{tabbara2025designinglatentsafetyfilters,
@@ -251,7 +297,11 @@
     </div>
   </div>
 
-</div>
+  <footer class="site-footer">
+    Part of the <a href="https://trustworthyautonomy.github.io/">Trustworthy Autonomy Lab research collection</a>
+    at Washington University in St. Louis.
+  </footer>
+</main>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
